@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookStore.Models;
+using log4net;
+using Microsoft.Ajax.Utilities;
 
 namespace BookStore.Controllers
 {
@@ -12,10 +14,11 @@ namespace BookStore.Controllers
     {
 
         private StudentsContext db = new StudentsContext();
+        private static readonly ILog log = LogManager.GetLogger(typeof(StudentsController));
         // GET: Students
         public ActionResult Index()
         {
-            
+            log.Error("test");
             return View(db.Students.ToList());
         }
 

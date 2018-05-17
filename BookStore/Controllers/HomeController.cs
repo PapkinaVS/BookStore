@@ -5,15 +5,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BookStore.Models;
+using log4net;
 
 namespace BookStore.Controllers
 {
     public class HomeController : Controller
     {
         BookContext db = new BookContext();
-
-	    public ActionResult Index()
+        private static readonly ILog log = LogManager.GetLogger("testLoggingTable");
+        public ActionResult Index()
         {
+            //LogManager.GetRepository()
+            log.Info(new { PartitionKey = 1, RowKey = 1});
             // получаем из бд все объекты Book
             IEnumerable<Book> books = db.Books;
             return View(books);
