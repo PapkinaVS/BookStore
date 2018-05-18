@@ -5,6 +5,22 @@
 @section Footer {
     Все права защищены. Syte Corp. 2015.
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#button1').click(function() {
+            appInsights.TrackEvent("Event #1");
+        });
+        $('#button2').click(function () {
+            appInsights.TrackEvent("Event #2");
+        });
+    });
+</script>
+<div>
+    <input id="button1" type="button" name="button" value="#Event 1"/>
+    <input id="button2" type="button" name="button" value="#Event 2"/>
+</div>
+
 <h3>Распродажа книг</h3>
 <table class="table table-responsive table-bordered table-hover">
     <thead>
