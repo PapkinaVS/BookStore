@@ -37,7 +37,7 @@ namespace BookStore
             log4net.Config.XmlConfigurator.ConfigureAndWatch(new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Web.config")));
 
              TelemetryClient telemetry = new TelemetryClient();
-            telemetry.TrackEvent("App Start");
+            telemetry.TrackEvent("Event #1: App Start");
     }
 	}
 }

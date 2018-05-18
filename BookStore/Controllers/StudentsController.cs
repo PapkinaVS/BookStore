@@ -18,12 +18,13 @@ namespace BookStore.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            log.Error("test");
+            log.Error(new NullReferenceException());
             return View(db.Students.ToList());
         }
 
         public ActionResult Details(int id = 0)
         {
+            log.Error(new ArgumentException());
             Student student = db.Students.Find(id);
             if (student == null)
             {
