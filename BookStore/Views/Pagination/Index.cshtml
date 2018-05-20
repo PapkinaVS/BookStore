@@ -3,6 +3,36 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<script type="text/javascript">
+    window.onload = (() => {
+        getPhones().then(renderPhones).then(renderButtons);
+
+        function renderPhones(phonesInfo) {
+            $('.phones').empty();
+            phonesInfo.Phones.forEach((phone) => {
+                $('.phones').append(
+                    `<tr>
+                <td>${phone.Model}</td>
+                <td>${phone.Producer}</td>
+            </tr>`);
+            });
+            return phonesInfo;
+        }
+        function renderButtons(phonesInfo) {
+            for (let i = 1; i <= phonesInfo.PageInfo.TotalPages; i++) {
+                $(".btn-group").append(
+                    $(`<a>${i}</a>`).addClass('btn btn-default').click(() => {
+                        getPhones(i).then(renderPhones);
+                    })
+                );
+            }
+        }
+
+        function getPhones(page = 1) {
+            return $.get(`/api/PaginationApi/${page}`);
+        }
+    });
+</script>
 <table class="table table-hover table-bordered table-responsive">
 
     <thead>
@@ -11,18 +41,9 @@
             <th>Производитель</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model.Phones)
-        {
-            <tr>
-                <td>@item.Model</td>
-                <td>@item.Producer</td>
-            </tr>
-        }
-    </tbody>
+    <tbody class="phones"></tbody>
 
 </table>
 <br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
 </div>
