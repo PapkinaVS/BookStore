@@ -1,5 +1,4 @@
-﻿@model BookStore.Models.Purchase
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     string[] cities = new string[] { "Лондон", "Париж", "Москва" };
@@ -28,15 +27,15 @@
             <h3>Форма оформления покупки</h3>
             @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
             {
-                @Html.HiddenFor(m => m.BookId)
+                @Html.Hidden("BookId")
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Person, "Введите свое имя")
-                    @Html.TextBoxFor(m => m.Person, new {@class = "form-control"})
+                    @Html.Label("Person", "Введите свое имя")
+                    @Html.TextBox("Person", "", new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Address, "Введите адрес")
+                    @Html.Label("Address", "Введите адрес")
 
-                    @Html.TextBoxFor(m => m.Address, new {@class = "form-control"})
+                    @Html.TextBox("Address", "", new { @class = "form-control" })
                 </div>
                 <button type="submit" class="btn btn-success">Отправить</button>
 
@@ -44,24 +43,3 @@
         </div>
     </div>
 </div>
-
-@*<div>
-        <h3>Форма оформления покупки</h3>
-        <form method="post" action="">
-            <input type="hidden" value="@ViewBag.BookId" name="BookId" />
-            <table>
-                <tr>
-                    <td><p>Введите свое имя </p></td>
-                    <td><input type="text" name="Person" /> </td>
-                </tr>
-                <tr>
-                    <td><p>Введите адрес :</p></td>
-                    <td>
-                        <input type="text" name="Address" />
-                    </td>
-                </tr>
-                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
-            </table>
-        </form>
-    </div>*@
-@Html.Partial("Partial")

@@ -8,7 +8,7 @@ namespace BookStore.Models
     public class Purchase
     {
         // ID покупки
-        public int PurchaseId { get; set; }
+        public int Id { get; set; }
         // имя и фамилия покупателя
         public string Person { get; set; }
         // адрес покупателя

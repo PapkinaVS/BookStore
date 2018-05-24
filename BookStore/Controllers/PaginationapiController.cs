@@ -1,12 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 using System.Web.UI.WebControls;
 using BookStore.Models.Pagination;
+using Microsoft.WindowsAzure.Storage.Blob.Protocol;
+using Swashbuckle.Swagger.Annotations;
 
 namespace BookStore.Controllers
 {
+
+    /// <summary>
+    /// Get values
+    /// </summary>
     public class PaginationApiController : ApiController
     {
         List<Phone> phones;
@@ -27,12 +36,18 @@ namespace BookStore.Controllers
             };
         }
 
+
         /// <summary>
         /// Get phones
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
+        /// <param name="page">page number</param>
+        /// <returns>returns items for page</returns>
+        /// <operation-name>get values</operation-name>
         [ResponseType(typeof(IndexViewModel))]
+        [ActionName("Get values")]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult),
+            Description = "bad data")]
+        [SwaggerOperation(Tags = new[] { "Get values" })]
         public IHttpActionResult Get(int page = 1)
         {
             int pageSize = 3;

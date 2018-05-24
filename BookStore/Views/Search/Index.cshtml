@@ -1,0 +1,82 @@
+﻿@model BookStore.Models.SearchViewModel
+@{
+    /**/
+
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Books.Any())
+{
+    <h3>Books</h3>
+    <table class="table table-responsive table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Название книги</th>
+                <th>Автор</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (BookStore.Models.Book p in Model.Books)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Author</td>
+                    <td>@p.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Players.Any())
+{
+    <h3>Soccer</h3>
+    <table class="table table-hover table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Имя игрока</th>
+                <th>Возраст</th>
+                <th>Позиция на поле</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Players)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+            </tr>
+        }
+    </table>
+}
+@if (Model.Students.Any())
+{
+    <h3>Students</h3>
+    <table class="table table-hover table-bordered table-responsive table-striped">
+        <thead>
+        <tr>
+            <th>Имя студента</th>
+            <th>Фамилия</th>
+        </tr>
+        </thead>
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+            </tr>
+        }
+    </table>
+}
