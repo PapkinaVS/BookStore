@@ -16,11 +16,6 @@ namespace BookStore
                 routeTemplate: "api/PaginationApi/{page}",
                 defaults: new { controller = "PaginationApi", page = RouteParameter.Optional }
             );
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
         }
     }
 }
